@@ -1,0 +1,171 @@
+<html>
+  <body>
+  	<style type="text/css">
+  		table {
+  			border-collapse: collapse;
+  		}
+
+  		tr:hover {
+			background-color: #f5f5f5;
+		}
+
+  		td {
+  			border: 1px solid #ddd;
+		    padding: 3px;
+		    text-align: left;
+
+		}
+
+		#button {
+			width: 100%;
+
+		}
+  		
+  	</style>
+
+    <script language="javascript" type="text/javascript">
+    	function calculate() {
+			var qty = document.getElementById("qty").value;
+			var float_qty = document.getElementById("float_qty").value;
+			var fish_qty = document.getElementById("fish_qty").value;
+			var fresh_fish_qty = document.getElementById("fresh_fish_qty").value;
+			var buff_value = document.getElementById("buff_value").value;
+			var exp_value = document.getElementById("exp_value").value;
+
+			if (float_qty == 0) {
+				fish_qty = fish_qty / 2;
+				fresh_fish_qty = fresh_fish_qty / 2;
+			}
+			
+			var spent_on_bait = qty * 7;
+			var spent_on_float = float_qty * 28;
+
+			var buff_qty = (fish_qty / 10).toFixed(2);
+			var exp_qty = (fresh_fish_qty / 35).toFixed(1);
+
+			var buff_total = Math.round(buff_qty * buff_value);
+			var exp_total = Math.round(exp_qty * exp_value);
+
+			var total_sold = buff_total + exp_total;
+
+			var total = buff_total + exp_total - spent_on_bait;
+			var total_with_float = buff_total + exp_total - spent_on_bait - spent_on_float;
+				
+			//document.getElementById("total").innerHTML = total;
+			document.getElementById("spent_on_bait").innerHTML = spent_on_bait;
+			document.getElementById("spent_on_float").innerHTML = spent_on_float;
+			document.getElementById("buff_total").innerHTML = buff_total;
+			document.getElementById("exp_total").innerHTML = exp_total;
+			document.getElementById("total_sold").innerHTML = total_sold;
+			document.getElementById("total_with_float").innerHTML = total_with_float;
+		}
+    </script>
+
+    <form>
+	    <table>
+			<tr>
+				<td>
+					Количество наживок:
+				</td>
+				<td>
+					<input type="text" id="qty" value="307"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Количество поплавков:
+				</td>
+				<td>
+					<input type="text" id="float_qty" value="307"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Количество скумбрий:
+				</td>
+				<td>
+					<input type="text" id="fish_qty" value="161"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Количество свежих скумбрий:
+				</td>
+				<td>
+					<input type="text" id="fresh_fish_qty" value="93"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Стоимость рагу на баф:
+				</td>
+				<td>
+					<input type="text" id="buff_value" value="400"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Стоимость рагу на опыт:
+				</td>
+				<td>
+					<input type="text" id="exp_value" value="4500"/>
+				</td>	
+			</tr>
+			<tr>
+				<td class="button">
+					<input id="button" type="button" onclick="calculate();" value="Тык"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Всего потрачено на наживку:
+				</td>
+				<td>
+					<span id="spent_on_bait"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Всего потрачено на поплавки:
+				</td>
+				<td>
+					<span id="spent_on_float"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Всего продано рагу на баф:
+				</td>
+				<td>
+					<span id="buff_total"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Всего продано рагу на эксп:
+				</td>
+				<td>
+					<span id="exp_total"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Всего продано:
+				</td>
+				<td>
+					<span id="total_sold"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Профит:
+				</td>
+				<td>
+					<span id="total_with_float"></span>
+				</td>
+			</tr>
+		</table>
+	</form>
+    
+  </body>
+</html>
